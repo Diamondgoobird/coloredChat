@@ -1,0 +1,16 @@
+[
+{
+  "modid": "coloredChat",
+  "name": "Colored Chat",
+  "description": "Makes it so players can change the color of chat.",
+  "version": "1.0.0",
+  "mcversion": "1.8.9",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Diamondgoobird"],
+  "credits": "e",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
