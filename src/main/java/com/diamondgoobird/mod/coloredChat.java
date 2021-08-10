@@ -1,6 +1,7 @@
 package com.diamondgoobird.mod;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -22,6 +23,8 @@ import net.minecraftforge.common.config.*;
 
 @Mod(modid = DGBGlobal.MOD_ID, name = DGBGlobal.MOD_NAME, version = DGBGlobal.VERSION)
 public class coloredChat {
+	public static Pattern privateMessageRegex;
+	private String privateChatMessage = "(?<prefix>.+)§r: (?<message>.*)";
 	public static String customcommand;
 	public final static Configuration Config = new Configuration(new File("config/ColoredChat.cfg"));
 	public static boolean toggle;
@@ -41,6 +44,7 @@ public class coloredChat {
 	}
 	@EventHandler
 	public void Init(FMLInitializationEvent Event) {
+		privateMessageRegex = Pattern.compile(privateChatMessage);
 		System.out.println(modPrefix + "Initiallizing Commands...");
 		ClientCommandHandler.instance.registerCommand(new colorChatCommand());
 		System.out.println(modPrefix + "Completed Initiallizing Commands");

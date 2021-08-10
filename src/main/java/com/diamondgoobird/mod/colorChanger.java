@@ -1,5 +1,9 @@
 package com.diamondgoobird.mod;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.UnaryOperator;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -8,6 +12,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class colorChanger {
+	
 	@SubscribeEvent
 	public void getChat(ClientChatReceivedEvent event) {
 		coloredChat.Config.load();
@@ -17,12 +22,14 @@ public class colorChanger {
 			
 		}
 		else {
+//		UnaryOperator <IChatComponent> operator = null;
+//		event.message.getSiblings().replaceAll(operator);
 		String message = event.message.getUnformattedText();
+		System.out.println(message);
 		char[] characters = message.toCharArray();
 		EnumChatFormatting[] colors = new EnumChatFormatting[message.length()];
 		boolean changed = false;
 			if (message.contains("&")) {
-				changed = true;
 				int x = 0;
 				char[] a = new char[]{'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','k','l','m','n','o','r'};
 
@@ -31,14 +38,14 @@ public class colorChanger {
 					b = 22;
 				}
 				while (x < b) {	
-				message = message.replaceAll("&" + a[x], "\u00a7" + a[x]);
+				event.message = new ChatComponentText(event.message.getFormattedText().replaceAll("&" + a[x], "\u00a7" + a[x]));
+				changed = true;
 				x++;
 				}
 			}
-
-		if (changed == true) {
+			if (changed == true) {
 			event.setCanceled(true);
-			Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(message));
+			Minecraft.getMinecraft().thePlayer.addChatMessage(event.message);
 		}
 		}
 	}

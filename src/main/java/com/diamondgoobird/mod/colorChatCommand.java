@@ -64,7 +64,8 @@ public class colorChatCommand extends CommandBase {
 			if (coloredChat.nonColor == false) {
 				try {
 					DGBGlobal.set(coloredChat.Config.getConfigFile(),"nonColor","true","    B:nonColor=","boolean");
-					coloredChat.nonColor = coloredChat.Config.getBoolean("nonColor", "values", false, "If true, then only colors can be shown (not italics, underlined, etc.)");
+					coloredChat.nonColor = true;
+					//coloredChat.nonColor = coloredChat.Config.getBoolean("nonColor", "values", false, "If true, then only colors can be shown (not italics, underlined, etc.)");
 					//DGBGlobal.set(Main.Config.getConfigFile(),"both","false","    B:both=","boolean");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -75,6 +76,7 @@ public class colorChatCommand extends CommandBase {
 			else {
 				try {
 					DGBGlobal.set(coloredChat.Config.getConfigFile(),"nonColor","false","    B:nonColor=","boolean");
+					coloredChat.nonColor = false;
 					//DGBGlobal.set(Main.Config.getConfigFile(),"both","false","    B:both=","boolean");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
